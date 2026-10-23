@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#edf6f8">
+  <title>Sereno | Cuidado odontológico conectado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Sereno início">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span><strong>sereno</strong><small>cuidado conectado</small></span>
+      </a>
+
+      <div class="role-switch-wrap">
+        <label for="roleSwitch">Visualizar como</label>
+        <select id="roleSwitch" aria-label="Alternar área">
+          <option value="doctor">Profissional</option>
+          <option value="patient">Paciente</option>
+        </select>
+      </div>
+
+      <div class="nav-label">ESPAÇO DE TRABALHO</div>
+      <nav id="mainNav" class="nav-list" aria-label="Navegação principal"></nav>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-note">
+          <span class="privacy-icon">✦</span>
+          <div><strong>Seu espaço, com cuidado</strong><p>Informações pessoais ficam separadas do conhecimento compartilhado.</p></div>
+        </div>
+        <button class="profile-mini" id="profileButton" type="button">
+          <span class="avatar avatar-teal" id="profileAvatar">AM</span>
+          <span class="profile-copy"><strong id="profileName">Dra. Ana Martins</strong><small id="profileRole">Cirurgiã-dentista</small></span>
+          <span class="chevron">⌄</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Sereno</span><span class="crumb-dot">/</span><strong id="breadcrumbCurrent">Visão geral</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" id="helpButton" aria-label="Ajuda" title="Ajuda">?</button>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Notificações" title="Notificações">♧<i></i></button>
+          <span class="topbar-divider"></span>
+          <span class="avatar avatar-teal" id="topAvatar">AM</span>
+        </div>
+      </header>
+
+      <div class="page-container">
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        <section id="pageContent" aria-live="polite"></section>
+        <footer class="app-footer">
+          <span>Sereno · Protótipo conceitual</span>
+          <span>Privacidade e cuidado em primeiro lugar</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="methodDialog" class="modal">
+    <form id="methodForm" method="dialog">
+      <div class="modal-heading">
+        <div><span class="eyebrow">BIBLIOTECA DE CONHECIMENTO</span><h2 id="methodDialogTitle">Criar método</h2></div>
+        <button class="icon-button close-modal" type="button" id="closeMethodDialog" aria-label="Fechar">×</button>
+      </div>
+      <p class="muted">Crie um modelo que possa ser reutilizado. Não inclua dados identificáveis de pacientes.</p>
+      <label for="methodName">Nome do método</label>
+      <input id="methodName" name="methodName" placeholder="Ex.: Preparação para primeira consulta" required maxlength="80">
+      <label for="methodCategory">Categoria</label>
+      <select id="methodCategory" name="methodCategory">
+        <option>Experiência do paciente</option><option>Organização clínica</option><option>Orientação pós-consulta</option><option>Prevenção e acompanhamento</option><option>Outro</option>
+      </select>
+      <label for="methodDescription">Objetivo e descrição</label>
+      <textarea id="methodDescription" name="methodDescription" rows="4" placeholder="Descreva o objetivo, as etapas e como avaliar se funciona..." required maxlength="1200"></textarea>
+      <label class="check-row"><input type="checkbox" id="methodPublic"> <span><strong>Compartilhar na comunidade</strong><small>Outros profissionais poderão consultar este método. Você pode alterar isso depois.</small></span></label>
+      <div class="modal-actions"><button class="btn btn-quiet" type="button" id="cancelMethod">Cancelar</button><button class="btn btn-primary" type="submit">Salvar método <span>→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="routineDialog" class="modal">
+    <form id="routineForm" method="dialog">
+      <div class="modal-heading">
+        <div><span class="eyebrow">ACOMPANHAMENTO</span><h2>Adicionar orientação</h2></div>
+        <button class="icon-button close-modal" type="button" id="closeRoutineDialog" aria-label="Fechar">×</button>
+      </div>
+      <p class="muted">Adicione uma orientação demonstrativa à rotina do paciente.</p>
+      <label for="routineTitle">Título</label>
+      <input id="routineTitle" placeholder="Ex.: Registrar dúvidas para a próxima consulta" required maxlength="100">
+      <label for="routineWhen">Quando?</label>
+      <select id="routineWhen"><option>Diariamente</option><option>Após as refeições</option><option>Antes da próxima consulta</option><option>Uma vez</option></select>
+      <label for="routineNote">Observação (opcional)</label>
+      <textarea id="routineNote" rows="3" maxlength="500" placeholder="Contexto ou orientação complementar..."></textarea>
+      <div class="modal-actions"><button class="btn btn-quiet" type="button" id="cancelRoutine">Cancelar</button><button class="btn btn-primary" type="submit">Adicionar orientação <span>→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="patientDialog" class="modal">
+    <form id="patientForm" method="dialog">
+      <div class="modal-heading">
+        <div><span class="eyebrow">ACOMPANHAMENTO CLÍNICO</span><h2>Adicionar paciente</h2></div>
+        <button class="icon-button close-modal" type="button" id="closePatientDialog" aria-label="Fechar">×</button>
+      </div>
+      <p class="muted">Protótipo local: use dados fictícios, não informações reais de saúde.</p>
+      <label for="patientNameInput">Nome de demonstração</label>
+      <input id="patientNameInput" placeholder="Ex.: Marina Costa" required maxlength="80">
+      <label for="patientReasonInput">Motivo geral do acompanhamento</label>
+      <select id="patientReasonInput"><option>Prevenção</option><option>Acompanhamento</option><option>Consulta inicial</option><option>Retorno</option></select>
+      <div class="modal-actions"><button class="btn btn-quiet" type="button" id="cancelPatient">Cancelar</button><button class="btn btn-primary" type="submit">Adicionar paciente <span>→</span></button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
