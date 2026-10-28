@@ -1,0 +1,20 @@
+name: Verificar PetClub
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar arquivos principais
+        run: |
+          test -f pg1/index.html
+          test -f pg1/style.css
+          test -f pg1/app.js
